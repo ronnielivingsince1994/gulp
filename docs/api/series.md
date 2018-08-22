@@ -36,7 +36,7 @@ series(...tasks)
 ### Parameters
 | parameter | type | note |
 |:--------------:|:------:|-------|
-| tasks  <br> **required** | function <br> string | Any number of task functions can be passed as individual arguments. Strings can be used if you’ve registered tasks previously, but this is not recommended. |
+| tasks  <br> **required** | function <br> string | Any number of task functions can be passed as individual arguments. Strings can be used if you've registered tasks previously, but this is not recommended. |
 
 ### Return
 
@@ -46,11 +46,11 @@ When the composed operation is executed, all tasks will be run sequentially. If 
 
 ## Forward references
 
-A forward reference is when you compose tasks, using string references, that haven’t been registered yet. This was a common practice in older versions, but this feature was removed to achieve faster task runtime and promote the use of named functions.
+A forward reference is when you compose tasks, using string references, that haven't been registered yet. This was a common practice in older versions, but this feature was removed to achieve faster task runtime and promote the use of named functions.
 
-In newer versions, you’ll get an error if you try to use forward references. You may experience this when trying to use `exports` for your task registration **and** trying to compose tasks by string. In this situation, use named functions instead of string references.
+In newer versions, you'll get an error if you try to use forward references. You may experience this when trying to use `exports` for your task registration **and** trying to compose tasks by string. In this situation, use named functions instead of string references.
 
-During migration, you may need to use [a forward reference registry][undertaker-forward-reference]. This will add an extra closure to every task reference and dramatically slow down your build. **Don’t rely on this fix for very long**.
+During migration, you may need to use [a forward reference registry][undertaker-forward-reference]. This will add an extra closure to every task reference and dramatically slow down your build. **Don't rely on this fix for very long**.
 
 ## Avoid duplicating tasks
 

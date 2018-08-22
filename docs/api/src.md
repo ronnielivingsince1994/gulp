@@ -17,7 +17,7 @@ Creates a stream for reading [Vinyl][vinyl-concepts] objects from the filesystem
 const { src, dest } = require('gulp');
 
 function copy() {
-  return src(input/*.js')
+  return src('input/*.js')
     .pipe(dest('output/'));
 }
 
@@ -53,14 +53,14 @@ An error with the message "File not found with singular glob," will be thrown if
 
 | Name | Type | Default | Note |
 |:--------:|:------:|------------|--------|
-| buffer | boolean <br> function | true | When true, file contents are buffered into memory. If false, the Vinyl object’s `contents` property will be a paused stream. Contents of large files may not be able to be buffered. **Note:** Plugins might not implement support for streaming contents. |
-| read | boolean <br> function | true | If false, files will be not be read and their Vinyl objects won’t be writable to disk via `.dest()`. |
+| buffer | boolean <br> function | true | When true, file contents are buffered into memory. If false, the Vinyl object's `contents` property will be a paused stream. Contents of large files may not be able to be buffered. **Note:** Plugins might not implement support for streaming contents. |
+| read | boolean <br> function | true | If false, files will be not be read and their Vinyl objects won't be writable to disk via `.dest()`. |
 | since | date <br> timestamp <br> function | | Only emits Vinyl objects for files that have been modified since the specified time. |
 | removeBOM | boolean <br> function | true | Removes the BOM from UTF-8 encoded files. Set to false, if you need the BOM. |
 | sourcemaps | boolean <br> function | false | If true, enables [sourcemaps][sourcemaps-docs] support on Vinyl objects emitted. Loads inline sourcemaps and resolves external sourcemap links. |
-| resolveSymlinks | boolean <br> function | true | When true, recursively resolves symbolic links to their targets. If false, preserves the symbolic links and sets the Vinyl object’s `symlink` property to the original’s target path. |
+| resolveSymlinks | boolean <br> function | true | When true, recursively resolves symbolic links to their targets. If false, preserves the symbolic links and sets the Vinyl object's `symlink` property to the original's target path. |
 | cwd | string | `process.cwd()` | The directory from which relative paths are to be derived. Use to avoid combining `globs` with `path.join()`. <br> _This option is passed directly to [glob-stream][glob-stream-docs]._ |
-| base | string | | Explicitly set a glob’s base. Detailed in [API Concepts][glob-base-concepts]. <br> _This option is passed directly to [glob-stream][glob-stream-docs]._ |
+| base | string | | Explicitly set a glob's base. Detailed in [API Concepts][glob-base-concepts]. <br> _This option is passed directly to [glob-stream][glob-stream-docs]._ |
 | cwdbase | boolean | false | If true, `cwd` and `base` options should be the aligned. <br> _This option is passed directly to [glob-stream][glob-stream-docs]._ |
 | root | string | | The root path that `globs` are resolved against. <br> _This option is passed directly to [glob-stream][glob-stream-docs]._ |
 | allowEmpty | boolean | false | When false, `globs` which can only match one file (such as `foo/bar.js`) will cause an error to be thrown if they don't find a match. If true, suppresses glob failures. <br> _This option is passed directly to [glob-stream][glob-stream-docs]._ |
@@ -77,7 +77,7 @@ An error with the message "File not found with singular glob," will be thrown if
 | noglobstar | boolean | false | If true, treats double-star glob character as single-star glob character. <br> _This option is passed directly to [node-glob][node-glob-docs]._ |
 | noext | boolean | false | If true, avoids matching [extglob][extglob-docs] patterns - e.g. `+(a|b)`. <br> _This option is passed directly to [node-glob][node-glob-docs]._ |
 | nocase | boolean | false | If true, performs a case-insensitive match. **Note:** On case-insensitive filesystems, non-magic patterns will match by default. <br> _This option is passed directly to [node-glob][node-glob-docs]._ |
-| matchBase | boolean | false | If true and  globs don’t contain any `/` characters, traverses all directories and matches that glob - e.g. `*.js` would be treated as equivalent to `**/*.js`. <br> _This option is passed directly to [node-glob][node-glob-docs]._ |
+| matchBase | boolean | false | If true and  globs don't contain any `/` characters, traverses all directories and matches that glob - e.g. `*.js` would be treated as equivalent to `**/*.js`. <br> _This option is passed directly to [node-glob][node-glob-docs]._ |
 | nodir | boolean | false | If true, will only matches files, not directories. **Note:** To match only directories, end your glob with a `/`. <br> _This option is passed directly to [node-glob][node-glob-docs]._ |
 | ignore | string <br> array | | Globs to exclude from matches. This option is combined with negated `globs`. **Note:** These globs are always matched against dot files, regardless of any other settings. <br> _This option is passed directly to [node-glob][node-glob-docs]._ |
 | follow | boolean | false | If true, symlinked directories will be traversed when expanding `**` globs. **Note:** This can cause problems with cyclical links. <br> _This option is passed directly to [node-glob][node-glob-docs]._ |

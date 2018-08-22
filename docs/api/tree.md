@@ -9,7 +9,7 @@ sidebar_label: tree()
 
 Fetches the current task dependency tree - in the rare case that it is needed.
 
-Generally, `tree()` won’t be used by gulp consumers, but it is exposed so the CLI can show the dependency graph of the tasks defined in a gulpfile.
+Generally, `tree()` won't be used by gulp consumers, but it is exposed so the CLI can show the dependency graph of the tasks defined in a gulpfile.
 
 ## Usage
 

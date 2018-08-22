@@ -15,7 +15,7 @@ Creates a stream for writing [Vinyl][vinyl-concepts] objects to the filesystem.
 const { src, dest } = require('gulp');
 
 function copy() {
-  return src(input/*.js')
+  return src('input/*.js')
     .pipe(dest('output/'));
 }
 
@@ -53,8 +53,8 @@ Whenever a file is created on the filesystem, the Vinyl object will be modified.
 | name | type | default | note |
 |:-------:|:------:|-----------|-------|
 | cwd | string <br> function | process.cwd() | The directory from which relative paths are derived. Use to avoid combining `directory` with `path.join()`. |
-| mode | number <br> function | `stat.mode` of the Vinyl object | The mode used when creating files. If not set and `stat.mode` is missing, the process’ mode will be used instead. |
-| dirMode | number <br> function | | The mode used when creating directories. If not set, the process’ mode will be used. |
+| mode | number <br> function | `stat.mode` of the Vinyl object | The mode used when creating files. If not set and `stat.mode` is missing, the process' mode will be used instead. |
+| dirMode | number <br> function | | The mode used when creating directories. If not set, the process' mode will be used. |
 | overwrite | boolean <br> function | true | When true, overwrites existing files with the same path. |
 | append | boolean <br> function | false | If true, adds contents to the end of the file, instead of replacing existing contents. |
 | sourcemaps | boolean <br> string <br> function | false | If true, writes inline sourcemaps to the output file. Specifying a `string` path will write external [sourcemaps][sourcemaps-section] at the given path. |
@@ -63,9 +63,9 @@ Whenever a file is created on the filesystem, the Vinyl object will be modified.
 
 ## Metadata updates
 
-Whenever the `dest()` stream creates a file, the Vinyl object’s `mode`, `mtime`, and `atime` are compared to the created file. If they differ, the created file will be updated to reflect the Vinyl object’s metadata. If those properties are the same, or gulp doesn’t have permissions to make changes, the attempt is skipped silently.
+Whenever the `dest()` stream creates a file, the Vinyl object's `mode`, `mtime`, and `atime` are compared to the created file. If they differ, the created file will be updated to reflect the Vinyl object's metadata. If those properties are the same, or gulp doesn't have permissions to make changes, the attempt is skipped silently.
 
-This functionality is disabled on Windows or any other operating system that doesn’t support Node’s `process.getuid()` or `process.geteuid()` methods. This is due to Windows having unexpected results through usage of `fs.fchmod()` and `fs.futimes()`.
+This functionality is disabled on Windows or any other operating system that doesn't support Node's `process.getuid()` or `process.geteuid()` methods. This is due to Windows having unexpected results through usage of `fs.fchmod()` and `fs.futimes()`.
 
 **Note**: The `fs.futimes()` method internally converts `mtime` and `atime` timestamps to seconds. This division by 1000 may cause some loss of precision on 32-bit operating systems.
 
@@ -101,11 +101,11 @@ When creating symbolic links on Windows, a `type` argument is passed to Node's `
 * `'dir'` when the target is a directory and the user disables the `useJunctions` option
 
 
-If you try to create a "dangling" (pointing to a non-existent target) link, the link type can’t be determined automatically. In these cases, behavior will vary depending on whether the dangling link is being created via `symlink()` or via `dest()`.
+If you try to create a "dangling" (pointing to a non-existent target) link, the link type can't be determined automatically. In these cases, behavior will vary depending on whether the dangling link is being created via `symlink()` or via `dest()`.
 
 For dangling links created via `symlink()`, the incoming Vinyl object represents the target, so its stats will determine the desired link type. If `isDirectory()` returns false then a `'file'` link is created, otherwise a `'junction'` or a `'dir'` link is created depending on the value of the `useJunctions` option.
 
-For dangling links created via `dest()`, the incoming Vinyl object represents the link - typically loaded from disk via `src(..., { resolveSymlinks: false })`. In this case, the link type can’t be reasonably determined and defaults to using `'file'`. This may cause unexpected behavior if you are creating a dangling link to a directory. **Avoid this scenario.**
+For dangling links created via `dest()`, the incoming Vinyl object represents the link - typically loaded from disk via `src(..., { resolveSymlinks: false })`. In this case, the link type can't be reasonably determined and defaults to using `'file'`. This may cause unexpected behavior if you are creating a dangling link to a directory. **Avoid this scenario.**
 
 [sourcemaps-section]: #sourcemaps
 [symbolic-links]: #symbolic-links-on-windows

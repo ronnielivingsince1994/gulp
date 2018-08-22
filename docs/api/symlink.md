@@ -15,7 +15,7 @@ Creates a stream for linking [Vinyl][vinyl-concepts] objects to the filesystem.
 const { src, symlink } = require('gulp');
 
 function link() {
-  return src(input/*.js')
+  return src('input/*.js')
     .pipe(symlink('output/'));
 }
 
@@ -55,7 +55,7 @@ __Note: On Windows, directory links are created using junctions by default. The 
 | name | type | default | note |
 |:-------:|:------:|-----------|-------|
 | cwd | string <br> function | process.cwd() | The directory from which relative paths are derived. Use to avoid combining `directory` with `path.join()`. |
-| dirMode | number <br> function | | The mode used when creating directories. If not set, the process’ mode will be used. |
+| dirMode | number <br> function | | The mode used when creating directories. If not set, the process' mode will be used. |
 | overwrite | boolean <br> function | true | When true, overwrites existing files with the same path. |
 | relativeSymlinks | boolean <br> function | false | When false, any symbolic links created will be absolute. <br> **Note**: Ignored if a junction is being created, as they must be absolute. |
 | useJunctions | boolean <br> function | true | This option is only relevant on Windows and ignored elsewhere. When true, creates directory symbolic link as a junction. Detailed in [Symbolic links on Windows][symbolic-links] below. |
@@ -68,11 +68,11 @@ When creating symbolic links on Windows, a `type` argument is passed to Node's `
 `'dir'` when the target is a directory and the user disables the `useJunctions` option
 
 
-If you try to create a "dangling" (pointing to a non-existent target) link, the link type can’t be determined automatically. In these cases, behavior will vary depending on whether the dangling link is being created via `symlink()` or via `dest()`.
+If you try to create a "dangling" (pointing to a non-existent target) link, the link type can't be determined automatically. In these cases, behavior will vary depending on whether the dangling link is being created via `symlink()` or via `dest()`.
 
 For dangling links created via `symlink()`, the incoming Vinyl object represents the target, so its stats will determine the desired link type. If `isDirectory()` returns false then a `'file'` link is created, otherwise a `'junction'` or a `'dir'` link is created depending on the value of the `useJunctions` option.
 
-For dangling links created via `dest()`, the incoming Vinyl object represents the link - typically loaded from disk via `src(..., { resolveSymlinks: false })`. In this case, the link type can’t be reasonably determined and defaults to using `'file'`. This may cause unexpected behavior if you are creating a dangling link to a directory. **Avoid this scenario.**
+For dangling links created via `dest()`, the incoming Vinyl object represents the link - typically loaded from disk via `src(..., { resolveSymlinks: false })`. In this case, the link type can't be reasonably determined and defaults to using `'file'`. This may cause unexpected behavior if you are creating a dangling link to a directory. **Avoid this scenario.**
 
 
 [vinyl-concepts]: LINK_NEEDED
