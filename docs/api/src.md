@@ -75,7 +75,7 @@ An error with the message "File not found with singular glob," will be thrown if
 | debug | boolean | false | If true, debugging information will be logged to the command line. <br> _This option is passed directly to [node-glob][node-glob-docs]._ |
 | nobrace | boolean | false | If true, avoids expanding brace sets - e.g. `{a,b}` or `{1..3}`. <br> _This option is passed directly to [node-glob][node-glob-docs]._ |
 | noglobstar | boolean | false | If true, treats double-star glob character as single-star glob character. <br> _This option is passed directly to [node-glob][node-glob-docs]._ |
-| noext | boolean | false | If true, avoids matching [extglob][extglob-docs] patterns - e.g. `+(a|b)`. <br> _This option is passed directly to [node-glob][node-glob-docs]._ |
+| noext | boolean | false | If true, avoids matching [extglob][extglob-docs] patterns - e.g. `+(ab)`. <br> _This option is passed directly to [node-glob][node-glob-docs]._ |
 | nocase | boolean | false | If true, performs a case-insensitive match. **Note:** On case-insensitive filesystems, non-magic patterns will match by default. <br> _This option is passed directly to [node-glob][node-glob-docs]._ |
 | matchBase | boolean | false | If true and  globs don't contain any `/` characters, traverses all directories and matches that glob - e.g. `*.js` would be treated as equivalent to `**/*.js`. <br> _This option is passed directly to [node-glob][node-glob-docs]._ |
 | nodir | boolean | false | If true, will only matches files, not directories. **Note:** To match only directories, end your glob with a `/`. <br> _This option is passed directly to [node-glob][node-glob-docs]._ |
